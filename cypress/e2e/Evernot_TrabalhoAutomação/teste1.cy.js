@@ -8,7 +8,7 @@ describe('Primeiro Teste: Fazendo login no site Evernote', () => {
 
     })
     it('mapeando', () =>{
-
+        //teste alterando a branch e indo para validação
         cy.get('.relative > .bg-accent').click()
         cy.get('.rich-wrapper--hero-vertical > :nth-child(4) > a').click()
         cy.get('#email').type('leomiranda844@gmail.com')
