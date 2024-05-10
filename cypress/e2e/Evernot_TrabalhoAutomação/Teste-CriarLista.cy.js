@@ -1,3 +1,3 @@
 /// <reference types="cypress" />
 
-import loc from '../../support/locators'
+import loc from '../../support/locators'        
