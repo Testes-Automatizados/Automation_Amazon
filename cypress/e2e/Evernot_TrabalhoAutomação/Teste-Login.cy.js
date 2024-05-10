@@ -2,7 +2,7 @@
 
 import loc from '../../support/locators'
 
-describe('Testando funcionalidades de login', () => {
+describe('Teste de funcionalidades de login da amazon, nesses teste iremos fazer um login valido e outro com a funcionalidade de informações incorretas', () => {
     
     before(() => {
         //Link para login no site 
