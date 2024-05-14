@@ -14,8 +14,6 @@ describe('Teste para validar as funcionalidades de cadastro de endereços dentro
 
         cy.visit('https://www.amazon.com.br/a/addresses?ref_=ya_d_c_addr');
 
-        cy.get('#ya-myab-address-add-link').click();
-
         cy.CriarEndereco();
 
         cy.get('.a-alert-heading').should('contain', 'Endereço salvo').then(() => {
