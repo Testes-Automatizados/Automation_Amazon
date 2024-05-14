@@ -5,14 +5,14 @@ import command  from '../../support/commands'
 import 'cypress-xpath';
 
 
-describe('Teste para validações de Edição de pefil dentro da Amazon', () => { 
+describe('Teste para validações de edição de pefil dentro da Amazon', () => { 
 
     beforeEach(() => {
 
         cy.Login();
     });
 
-    it('Teste Alterando foto de perfil', () => { 
+    it('Teste - Alterando foto de perfil', () => { 
 
         cy.visit('https://www.amazon.com.br/gp/profile/onboard?ref=pc_ob')
 
@@ -22,7 +22,7 @@ describe('Teste para validações de Edição de pefil dentro da Amazon', () => 
         cy.EnviarInfo()
     });
 
-    it('Teste Excluindo Imagem de Perfil', () => {
+    it('Teste - Excluindo Imagem de Perfil', () => {
 
         cy.visit('https://www.amazon.com.br/gp/profile/amzn1.account.AHG3C7557U3SXZK6NRHYAZLNZJIQ?ref_=pdp_new_ob_def')
 
@@ -35,7 +35,7 @@ describe('Teste para validações de Edição de pefil dentro da Amazon', () => 
         })
     });
 
-    it('Teste Alterando Nome com validação de nome vazio', () => {
+    it('Teste - Alterando Nome com validação de nome vazio', () => {
 
         cy.visit('https://www.amazon.com.br/gp/profile/onboard?ref=pc_ob')
 
@@ -46,7 +46,7 @@ describe('Teste para validações de Edição de pefil dentro da Amazon', () => 
         cy.get('[data-name="name"] > .a-spacing-top-mini').should('contain', 'Este campo é obrigatório').then(() => {
             cy.log('NÃO PODE SALVAR SEM UM NOME')
         })
-
+        
         cy.get('[data-name="name"] > :nth-child(2) > .a-input-text').type(`Teste Automatizado ${numeroAleatorio}`)
         cy.EnviarInfo()
     });

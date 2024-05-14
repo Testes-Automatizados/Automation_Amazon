@@ -3,14 +3,14 @@
 import loc from '../../support/locators'
 import command  from '../../support/commands'
 
-describe('Teste para validar as funcionalidades de cadastro de endereços dentro da Amazon', () => {
+describe('Teste para validar as funcionalidades de cadastro e exclusão de endereços dentro da Amazon', () => {
 
     beforeEach(() => {
          
         cy.Login();
     })
 
-    it('Testando o cadastro de endereços no dentro da Amazon', () => {
+    it('Teste - Fazendo o cadastro de endereço', () => {
 
         cy.visit('https://www.amazon.com.br/a/addresses?ref_=ya_d_c_addr');
 
@@ -21,7 +21,7 @@ describe('Teste para validar as funcionalidades de cadastro de endereços dentro
         });
     });
 
-    it('Excluindo endereço cadastrado no sistema Amazon', () => {
+    it('Teste - Excluindo o endereço cadastrado', () => {
 
         cy.visit('https://www.amazon.com.br/gp/css/homepage.html?ref_=nav_AccountFlyout_ya');
 

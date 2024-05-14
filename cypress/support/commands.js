@@ -1,6 +1,7 @@
 /// <reference types="cypress" />
 
 import loc from '../support/locators'
+import 'cypress-xpath';
 
 Cypress.Commands.add('Login', (username, password) => {
 
@@ -9,7 +10,7 @@ Cypress.Commands.add('Login', (username, password) => {
 
     cy.get(loc.LOGIN.EMAIL).type('usertestesautomatizados@gmail.com')
         .tab()
-        .wait(2000).click();
+        .wait(1000).click();
     cy.get(loc.LOGIN.PASSWORD).type('TestesAutomatizados123');
     cy.get(loc.LOGIN.SUBMIT).click();
 })
@@ -74,12 +75,48 @@ Cypress.Commands.add('AdicionarImagem', (img) => {
         .should('have.attr', 'alt', 'Sua foto de perfil').then(() => {
              cy.log('IMAGEM IMPORTADA COM SUCESSO');
         });
-})
+});
 
 Cypress.Commands.add('EnviarInfo', () => {
     cy.get('#a-autoid-3 > .a-button-inner > .a-button-input').click()
         cy.url().should('contain', '.account.AHG3C7557U3SXZK6NRHYAZLNZJIQ').then(() => {
             cy.log('INFORMAÇÕES ALTERADAS COM SUCESSO')
         })
-})
+});
+
+Cypress.Commands.add('clicarNTimes', (selector, vezes) => {
+    for(let i = 0; i < vezes; i++) {
+        cy.get(selector).click()
+    }
+});
+
+Cypress.Commands.add('ValidarCarrinho', (selector) => {
+    cy.get(selector).then(($element) => {
+
+            const totalProdutoTexto = $element.text()
+            const partes = totalProdutoTexto.split(' ');
+            const quantidadeProdutos = partes[1].replace('(', '');
+
+            cy.get(selector).should('contain', `${totalProdutoTexto}`).then(() => {
+            cy.log(`FOI ADICIONADO AO CARRINHO ${quantidadeProdutos}`);
+        });
+    });
+});
+
+
+Cypress.Commands.add('ExcluirItensCarrinho', () => {  
+    function validandoBotaoExcluir(){
+        // Verifica se o botão de exclusão ainda existe na página
+        cy.get('#a-autoid-0-announce').should('exist').then(() => {
+            // Se o botão existir, digita o texto e pressiona Enter
+            cy.get('#a-autoid-0-announce').type('0, {enter}');
+            
+            // Chama a função novamente para excluir o próximo item, se houver
+            validandoBotaoExcluir();
+        });
+    }
+
+    // Chama a função para validar e executar a ação
+    validandoBotaoExcluir();
+});
 
