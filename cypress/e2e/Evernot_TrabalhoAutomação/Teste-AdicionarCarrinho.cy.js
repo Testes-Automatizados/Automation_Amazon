@@ -4,7 +4,7 @@ import loc from '../../support/locators'
 import commands from '../../support/commands'
 import 'cypress-xpath';
 
-describe('Teste para adicionar itens no carrinho, adicionar varios itens ao carrinho e validar a exclusão dos mesmos', () => {
+describe('Teste para validação de adição de um item e adição de varias quantidades de um unico item', () => {
 
     beforeEach(() => {
         cy.Login()
@@ -30,6 +30,7 @@ describe('Teste para adicionar itens no carrinho, adicionar varios itens ao carr
     });
 
     it('Teste - Adicionando itens em massa no carrinho', () => {
+        
         cy.visit('https://www.amazon.com.br/s?rh=n%3A16253419011&fs=true&pf_rd_i=17351089011&pf_rd_m=A1ZZFT5FULY4LN&pf_rd_p=f2c40f77-dfb6-48d2-941f-b77062ea3e25&pf_rd_r=TW279M12M40RQGA7YFCG&pf_rd_s=merchandised-search-8&ref=lp_16253419011_sar')
 
         cy.get(loc.PRODUTO.PRODUTO2).click({force:true})
@@ -40,19 +41,4 @@ describe('Teste para adicionar itens no carrinho, adicionar varios itens ao carr
         
         cy.ValidarCarrinho('#sc-subtotal-label-buybox')
     });
-
-    it.only('Teste - Excluindo 1 item do carrinho', () => {
-
-        cy.visit('https://www.amazon.com.br/cart?ref_=ewc_gtc')
-
-        //cy.ExcluirItensCarrinho()
-        
-        cy.ExcluirItensCarrinho()
-      
-            
-        // cy.get('.sc-cart-header > .a-row > .a-spacing-mini').should('contain', 'Seu carrinho de compras da Amazon está vazio.').then(() => {
-        //    cy.log('ITENS EXCLUIDOS DO CARRINHO COM SUCESSO')
-        // })
-    });
-
 });

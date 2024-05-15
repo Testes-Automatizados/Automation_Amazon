@@ -98,25 +98,31 @@ Cypress.Commands.add('ValidarCarrinho', (selector) => {
             const quantidadeProdutos = partes[1].replace('(', '');
 
             cy.get(selector).should('contain', `${totalProdutoTexto}`).then(() => {
-            cy.log(`FOI ADICIONADO AO CARRINHO ${quantidadeProdutos}`);
+                if(quantidadeProdutos <= 1){
+                    cy.log('FOI ADICIONADO UM ITEM NO CARRINHO')
+                }else{
+                    cy.log(`FOI ADICIONADO AO CARRINHO ${quantidadeProdutos} ITENS`);
+                }
         });
     });
-});
+});4
+
+Cypress.Commands.add('ExcluirItensCarrinho', (selector) => {
+    cy.get('').then(($botaoExcluir) => {
+
+        const botaoExcluir = $botaoExcluir
+
+        cy.get(selector).should('be.visible').then(() => {
+
+            if(botaoExcluir == true) {
+                cy.get(selector).click()
+                cy.reload()
+            }else{
+                return;
+            }
+        })
+    })
+})
 
 
-Cypress.Commands.add('ExcluirItensCarrinho', () => {  
-    function validandoBotaoExcluir(){
-        // Verifica se o botão de exclusão ainda existe na página
-        cy.get('#a-autoid-0-announce').should('exist').then(() => {
-            // Se o botão existir, digita o texto e pressiona Enter
-            cy.get('#a-autoid-0-announce').type('0, {enter}');
-            
-            // Chama a função novamente para excluir o próximo item, se houver
-            validandoBotaoExcluir();
-        });
-    }
-
-    // Chama a função para validar e executar a ação
-    validandoBotaoExcluir();
-});
 
