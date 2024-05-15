@@ -1,6 +1,7 @@
 /// <reference types="cypress" />
 
 import loc from '../../support/locators'
+import commands from '../../support/commandsAutomacao/commandsLogin'
 
 describe('Teste de funcionalidades de login da amazon', () => {
     
@@ -10,17 +11,9 @@ describe('Teste de funcionalidades de login da amazon', () => {
     })
    
         it('Teste - Fazendo login com dados validos', () =>{
-
-            cy.viewport(1920, 1080);
-            
-            cy.get(loc.LOGIN.EMAIL).type('usertestesautomatizados@gmail.com');
-            cy.get('#continue').click();
-            cy.get(loc.LOGIN.PASSWORD).type('TestesAutomatizados123');
-            cy.get('#signInSubmit').click();
-
-            cy.url().should('include', '_signin&adgrpid').then(() => {
-                cy.log('LOGIN REALIZADO COM SUCESSO')
-            });
+        
+           cy.Login();
+           cy.ValidandoLogin();
 
         })
 
@@ -30,6 +23,7 @@ describe('Teste de funcionalidades de login da amazon', () => {
             
             cy.get(loc.LOGIN.EMAIL).type('usertestesautomatiza@gmail.com');
             cy.get('#continue').click();
+
             cy.get('#auth-error-message-box > .a-box-inner').should('contain', 'Não encontramos uma conta associada a este endereço de e-mail').then(() => {
                 cy.log('E-MAIL INVALIDO!');
             })

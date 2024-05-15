@@ -1,13 +1,12 @@
 /// <reference types="cypress" />
 
 import loc from '../support/locators'
-import 'cypress-xpath';
 
 Cypress.Commands.add('Login', (username, password) => {
 
     cy.visit('https://www.amazon.com.br/ap/signin?openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.amazon.com.br%2Fgp%2Fcss%2Fhomepage.html%3Fref_%3Dnav_signin&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.assoc_handle=brflex&openid.mode=checkid_setup&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0')
     cy.reload()
-
+    
     cy.get(loc.LOGIN.EMAIL).type('usertestesautomatizados@gmail.com')
         .tab()
         .wait(1000).click();
@@ -89,23 +88,6 @@ Cypress.Commands.add('clicarNTimes', (selector, vezes) => {
         cy.get(selector).click()
     }
 });
-
-Cypress.Commands.add('ValidarCarrinho', (selector) => {
-    cy.get(selector).then(($element) => {
-
-            const totalProdutoTexto = $element.text()
-            const partes = totalProdutoTexto.split(' ');
-            const quantidadeProdutos = partes[1].replace('(', '');
-
-            cy.get(selector).should('contain', `${totalProdutoTexto}`).then(() => {
-                if(quantidadeProdutos <= 1){
-                    cy.log('FOI ADICIONADO UM ITEM NO CARRINHO')
-                }else{
-                    cy.log(`FOI ADICIONADO AO CARRINHO ${quantidadeProdutos} ITENS`);
-                }
-        });
-    });
-});4
 
 Cypress.Commands.add('ExcluirItensCarrinho', (selector) => {
     cy.get('').then(($botaoExcluir) => {
