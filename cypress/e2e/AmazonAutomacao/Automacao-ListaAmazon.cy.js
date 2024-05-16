@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 import loc from '../../support/locators'
-import command  from '../../support/commandsAutomacao/commandsList'
+import command  from '../../support/commandsAutomacaoAmazon/commandsList'
 
 describe('Testando funcionalidades de criar uma lista, editar uma lista, excluir uma lista e adicionar um produto na lista', () => { 
 
@@ -9,7 +9,7 @@ describe('Testando funcionalidades de criar uma lista, editar uma lista, excluir
         cy.Login()
     });
 
-    it.only('Teste - Criando uma lista a partir da guia Suas Listas', () => { 
+    it('Teste - Criando uma lista a partir da guia Suas Listas', () => { 
         
         cy.visit('https://www.amazon.com.br/hz/wishlist/ls?requiresSignIn=1&ref_=nav_AccountFlyout_wl')
 
@@ -39,5 +39,5 @@ describe('Testando funcionalidades de criar uma lista, editar uma lista, excluir
 
         cy.ExcluirLista()
         cy.ValidandoExclusaoLista()
-    })
+    });
 });

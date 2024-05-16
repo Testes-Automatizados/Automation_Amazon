@@ -7,10 +7,18 @@ Cypress.Commands.add('CriandoListaNew', (nome) => {
 
     const nomeLista = nome;
 
-    cy.xpath(loc.LISTA.INPUTBUTTON).click({force:true})
-    cy.get('#list-name').clear().type(nomeLista)
+    cy.get('#createList').click()
+    
+    cy.get('#list-name').clear()
     cy.xpath(`(//span[contains(text(), 'Criar uma Lista')])[2]`).click({force:true})
 
+    cy.get('#alert-list-name > .a-box-inner > .a-alert-content')
+    .should('contain', 'Insira um nome para a lsita.').then(() => {
+        cy.log('IMPOSSIVEL CRIAR LISTA SEM NOME')
+    })
+
+    cy.get('#list-name').type(nome)
+    cy.xpath(`(//span[contains(text(), 'Criar uma Lista')])[2]`).click({force:true})
     cy.wrap(nomeLista).as('nomeListaAlias')
 });
 
@@ -36,6 +44,15 @@ Cypress.Commands.add('EditandLista', (nome, email) => {
 
     cy.get('#overflow-menu-popover-trigger').click()
     cy.get('#editYourList').click({force:true})
+    cy.get('#list-settings-name').clear()
+    cy.xpath(`//span[@id='list-settings-save-announce']`).click({force:true})
+    .wait(2000)
+
+    cy.get('#list-settings-name-alert > .a-box-inner > .a-alert-content')
+        .should('contain', 'Você deve inserir um nome').then(() => {
+            cy.log('LISTA DEVE CONTER UM NOME PARA SER EDITADA')
+    })
+
     cy.get('#list-settings-name').clear().type(NomeEd)
     cy.get('#list-settings-email').clear().type(EmailEd)
     cy.get('#list-settings-description').clear().type(descricao)
