@@ -3,9 +3,9 @@
 import loc from '../../support/locators'
 import 'cypress-xpath';
 
-Cypress.Commands.add('SelectProdutoAdd', () => {
-    cy.get(loc.PRODUTO.PRODUD1).click({force:true})
-    cy.get('#add-to-cart-button').click()
+Cypress.Commands.add('SelectProdutoAdd', (url) => {
+    cy.visit(url)
+    cy.get('#add-to-cart-button').click({force:true})
 });
 
 Cypress.Commands.add('ValidandoAdd', () => {
