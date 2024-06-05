@@ -31,7 +31,7 @@ describe('Teste para validações de edição de pefil dentro da Amazon', () => 
         cy.ValidandoExclusao()
     });
 
-    it.only('Teste - Alterando Nome com validação de nome vazio', () => {
+    it('Teste - Alterando Nome com validação de nome vazio', () => {
 
         cy.visit('https://www.amazon.com.br/gp/profile/onboard?ref=pc_ob')
 

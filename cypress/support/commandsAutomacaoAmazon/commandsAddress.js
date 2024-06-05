@@ -66,8 +66,8 @@ Cypress.Commands.add('CriarEndereco', (nome, address1, address2, city, state, ce
 })
 
 Cypress.Commands.add('ExcluirEndereco', () => {
+    cy.visit('https://www.amazon.com.br/a/addresses?ref_=ya_d_c_addr')
     
-    cy.get(':nth-child(3) > :nth-child(1) > .ya-card__whole-card-link > .a-box > .a-box-inner').click({force:true});
     cy.get('#ya-myab-address-delete-btn-0').click()
     cy.get('#deleteAddressModal-0-submit-btn').type('{enter}')
 })
