@@ -20,11 +20,8 @@ describe('Teste para validar as funcionalidades de cadastro e exclusão de ender
     });
 
     it('Teste - Excluindo o endereço cadastrado', () => {
-
-        cy.visit('https://www.amazon.com.br/gp/css/homepage.html?ref_=nav_AccountFlyout_ya');
         
         cy.ExcluirEndereco()
         cy.ValidandoExcluirEndereco()
-
     });
 });
